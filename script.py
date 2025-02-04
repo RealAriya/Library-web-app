@@ -56,6 +56,21 @@ def add_memeber():
     return render_template("form.html")
 
 
+@app.route("/edit/<int:id>" ,  methods=["GET" , "POST" ])
+def edit_member(id):
+    member = Members.query.get_or_404(id)
+
+    if request.method == 'POST':
+       member.FirstName = request.form.get("FirstName")
+       member.LastName = request.form.get("LastName")
+       member.Email = request.form.get("Email")
+       member.Phone = request.form.get("Phone") 
+       
+       db.session.commit()
+       return redirect(url_for("index"))
+    
+    return render_template("edit_form.html", member=member)
+
 
 
 

@@ -25,16 +25,16 @@
       </thead>
       <tbody>
         <!-- Example Row 1 -->
-        {% for mem in result %}
+        {% for member in result %}
         <tr>
             
-          <td>{{mem.ID}}</td>
-          <td>{{mem.FirstName}}</td>
-          <td>{{mem.LastName}}</td>
-          <td>{{mem.Email}}</td>
-          <td>{{mem.Phone}}</td>           
+          <td>{{member.ID}}</td>
+          <td>{{member.FirstName}}</td>
+          <td>{{member.LastName}}</td>
+          <td>{{member.Email}}</td>
+          <td>{{member.Phone}}</td>           
           <td>        
-            <button class="btn btn-warning btn-sm">Edit</button>
+            <a href="{{ url_for('edit_member', id=member.ID) }}" class="btn btn-warning btn-sm">Edit</a>
             <button class="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
