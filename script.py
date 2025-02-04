@@ -32,6 +32,7 @@ def index():
     return render_template("index.html", result=result)
 
 
+# ADD
 @app.route("/add", methods=["GET" , "POST"])
 def add_memeber():
     if request.method == 'POST':
@@ -56,6 +57,7 @@ def add_memeber():
     return render_template("form.html")
 
 
+# EDIT / UPDATE
 @app.route("/edit/<int:id>" ,  methods=["GET" , "POST" ])
 def edit_member(id):
     member = Members.query.get_or_404(id)
@@ -71,6 +73,16 @@ def edit_member(id):
     
     return render_template("edit_form.html", member=member)
 
+
+# DELETE
+@app.route("/delete/<int:id>" , methods=["GET"])
+def delete_member(id):
+    member = Members.query.get_or_404(id)
+
+    db.session.delete(member)
+    db.session.commit()
+
+    return redirect(url_for("index"))
 
 
 
